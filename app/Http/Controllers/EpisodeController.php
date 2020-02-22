@@ -28,7 +28,7 @@ class EpisodeController extends Controller
   public function search($id, $episode)
   {
     $episodes = Anime::find($id)->episodes;
-    return [$episodes->where('episode', '=', $episode), Anime::find($id)];
+    return [$episodes->where('episode', '=', $episode)->first(), Anime::find($id)];
   }
 
   public function searchLink($id, $episode)
