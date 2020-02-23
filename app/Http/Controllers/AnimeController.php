@@ -28,19 +28,19 @@ class AnimeController extends Controller
     public function groupByName($type)
     {
       if ($type === 'tv') {
-        $anime = Anime::all()->where('type', '!=', 'Movie');
+        $anime = Anime::get(['id', 'title', 'type'])->where('type', '!=', 'Movie');
       } else {
-        $anime = Anime::all()->where('type', '=', 'Movie');
+        $anime = Anime::get(['id', 'title', 'type'])->where('type', '=', 'Movie');
       }
 
       $grouped = $anime->groupBy(function($item,$key) {
-          return $item->title[0];
-          })
-              ->sortBy(function($item,$key){
-                return $key;
-              });
+                          return $item->title[0];
+                        })
+                       ->sortBy(function($item,$key){
+                          return $key;
+                          });
 
-      return $grouped;
+      return [$grouped, Anime::get(['id', 'title', 'type', 'status', 'image_url'])->sortBy('title')->values()];
     }
 
     public function postAnime(Request $request)
