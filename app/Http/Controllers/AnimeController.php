@@ -12,9 +12,13 @@ class AnimeController extends Controller
         return Anime::inRandomOrder()->limit(12)->get();
     }
 
-    public function pagination()
+    public function pagination($type)
     {
-        $anime = Anime::orderBy('title')->select('id', 'title', 'status', 'type', 'image_url')->paginate(18);
+        if ($type === 'anime') {
+          $anime = Anime::orderBy('title')->select('id', 'title', 'status', 'type', 'image_url')->where('type', '!=', 'Movie' )->paginate(18);
+        } else {
+          $anime = Anime::orderBy('title')->select('id', 'title', 'status', 'type', 'image_url')->where('type', '=', 'Movie' )->paginate(18);
+        }
         return $anime;
     }
 

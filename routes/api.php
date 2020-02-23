@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('anime','AnimeController@index');
-Route::get('anime/pagination','AnimeController@pagination');
+Route::get('{type}/pagination','AnimeController@pagination');
 Route::get('anime/list/{type}','AnimeController@groupByName');
 Route::get('anime/{id}','AnimeController@search');
 Route::get('anime/{id}/{episode}','EpisodeController@search');
