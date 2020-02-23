@@ -10,4 +10,8 @@ class Anime extends Model
     {
       return $this->hasMany(Episode::class);
     }
+    public function linkBatchs()
+    {
+      return $this->hasMany(LinkBatch::class);
+    }
 }
