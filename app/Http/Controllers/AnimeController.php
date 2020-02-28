@@ -32,7 +32,8 @@ class AnimeController extends Controller
       if ($limit==='yes') {
         return Anime::where('title', 'like', '%'. $id . '%')->take(11)->get();
       }
-      return Anime::where('title', 'like', '%'. $id . '%')->get();
+
+      return Anime::where('title', 'like', '%'. $id . '%')->paginate(18);
     }
 
     public function groupByName($type)

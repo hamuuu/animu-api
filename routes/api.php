@@ -36,3 +36,4 @@ Route::post('user/login', 'UserController@login');
 Route::post('post-anime', 'AnimeController@postAnime');
 Route::post('post-episode', 'EpisodeController@postEpisode');
 Route::post('update-anime', 'AnimeController@updateAnime');
+Route::post('update-episode', 'EpisodeController@updateEpisode');
